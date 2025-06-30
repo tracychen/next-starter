@@ -13,13 +13,16 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    session: ({ session, token }) => ({
+    session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
-        id: token.sub,
+        id: user.id,
       },
     }),
+  },
+  session: {
+    strategy: "database",
   },
 };
 
