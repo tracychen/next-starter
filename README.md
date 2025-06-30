@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Starter
+
+A modern Next.js starter template with authentication, database integration, and development tools.
+
+## Features
+
+- **Next.js 15** with App Router and Turbopack
+- **Authentication** with NextAuth.js and Google OAuth
+- **Database** with Prisma and PostgreSQL
+- **UI Components** with Radix UI and Tailwind CSS
+- **Form Handling** with React Hook Form and Zod validation
+- **Code Quality** with ESLint, Prettier, and Husky
+- **TypeScript** with strict type checking
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database
+- Google OAuth credentials
+
+### Installation
+
+1. Clone the repository and install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Fill in your environment variables:
 
-## Learn More
+- `DATABASE_URL` - PostgreSQL connection string
+- `NEXTAUTH_SECRET` - Random secret for NextAuth
+- `GOOGLE_CLIENT_ID` - Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
 
-To learn more about Next.js, take a look at the following resources:
+3. Set up the database:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn db:push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Run the development server:
 
-## Deploy on Vercel
+```bash
+yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Available Scripts
+
+- `yarn dev` - Start development server with Turbopack
+- `yarn build` - Build for production
+- `yarn start` - Start production server
+- `yarn lint` - Run ESLint
+- `yarn type-check` - Run TypeScript compiler
+- `yarn format` - Format code with Prettier
+- `yarn db:generate` - Generate Prisma client
+- `yarn db:push` - Push schema to database
+- `yarn db:migrate` - Run database migrations
+- `yarn db:studio` - Open Prisma Studio
+
+## Project Structure
+
+```
+src/
+├── app/                 # Next.js App Router
+│   ├── api/auth/       # NextAuth API routes
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Home page
+├── components/         # React components
+│   └── providers.tsx   # Session provider
+└── lib/               # Utilities
+    ├── auth.ts        # NextAuth configuration
+    └── prisma.ts      # Prisma client
+```
+
+## Authentication
+
+This project uses NextAuth.js with Google OAuth. To set up Google OAuth:
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing one
+3. Enable Google+ API
+4. Create OAuth 2.0 credentials
+5. Add authorized redirect URI: `http://localhost:3000/api/auth/callback/google`
+6. Copy client ID and secret to your `.env` file
+
+## Database
+
+The project uses Prisma with PostgreSQL. The schema includes NextAuth tables for user authentication. Run `yarn db:studio` to explore your database with Prisma Studio.
+
+## Deployment
+
+Deploy easily on [Vercel](https://vercel.com/new) or any platform that supports Next.js. Make sure to set up your environment variables in your deployment platform.
