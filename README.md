@@ -99,6 +99,14 @@ This project uses NextAuth.js with Google OAuth. To set up Google OAuth:
 
 The project uses Prisma with PostgreSQL. The schema includes NextAuth tables for user authentication. Run `yarn db:studio` to explore your database with Prisma Studio.
 
+## Contributing
+
+We welcome contributions! Please use the following GitHub templates when submitting:
+
+- **Bug Reports** - Use the bug report template to describe issues
+- **Feature Requests** - Use the feature request template to propose new features
+- **Pull Requests** - Follow the PR template checklist when submitting code
+
 ## Deployment
 
 Deploy easily on [Vercel](https://vercel.com/new) or any platform that supports Next.js. Make sure to set up your environment variables in your deployment platform.
